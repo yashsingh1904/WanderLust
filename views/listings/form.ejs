@@ -1,26 +1,85 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=, initial-scale=1.0">
-    <title>Form </title>
-</head>
-<body>
+<% layout("/layouts/boilerplate.ejs") %>
 
-    <h1>Fill the form </h1>
+    <body>
 
-    <form method="post" action="/listings">
-        <input type="text" name="listing[title]" placeholder="Enter title of Property "><br><br>
-        <textarea type="text" name="listing[description]" placeholder="Enter description of Property "></textarea><br><br>
+        
+        <div class="row">
 
-        <input type="text" name="listing[image][url]" placeholder="Enter Link/Url of image "><br><br>
-        <input type="text" name="listing[location]" placeholder="Enter location of Property "><br><br>
-        <input type="text" name="listing[country]" placeholder="Enter country of Property "><br><br>
-        <input type="number" name="listing[price]" placeholder="Enter Price of Property "><br><br>
+            <div class="div  col-8 offset-1 col-lg-6 offset-lg-3">
 
-        <button type="submit"> ADD Property</button>
+                <h3 class="mt-2">Create New Listing</h3>
 
-    </form>
-    
-</body>
-</html>
+                <form method="post" action="/listings" class="newform">
+                <div class="mb-4">
+                    <label for="title" class="form-label">Title</label>
+                    <input type="text" name="listing[title]" placeholder="Enter title of Property "
+                        class="form-control">
+
+                </div>
+
+
+                <div class="mb-4">
+                    <label for="description" class="form-label">Description</label>
+                    <textarea type="text" name="listing[description]" placeholder="Enter description of Property "
+                        class="form-control"></textarea>
+
+                </div>
+
+                <div class="mb-4">
+                    <label for="imagelink" class="form-label">URL Of image</label>
+                    <input type="text" name="listing[image][url]" placeholder="Enter Url of image "
+                        class="form-control">
+
+                </div>
+
+                <div class="row">
+
+                    
+                <div class="mb-4 col-lg-4 ">
+                    <label for="country" class="form-label">Country</label>
+                    <input type="text" name="listing[country]" placeholder="Enter country of Property"
+                        class="form-control">
+
+
+                </div>
+
+                 <div class="mb-4 col-lg-8">
+                    <label for="Location" class="form-label">Location</label>
+                    <input type="text" name="listing[location]" placeholder="Enter location of Property "
+                        class="form-control">
+
+
+                </div>
+
+
+                    
+                </div>
+                
+
+               
+
+                <div class="mb-4 col-lg-6">
+                    <label for="price" class="form-label">Price</label>
+                    <input type="number" name="listing[price]" placeholder="Enter Price of Property  "
+                        class="form-control">
+
+
+                </div>
+<button class="btn btn-primary addBtn" type="submit">ADD</button>
+<br>
+<br>
+            </form>
+
+                
+
+            </div>
+            
+
+
+        </div>
+
+
+
+    </body>
+
+    </html>

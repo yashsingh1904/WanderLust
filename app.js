@@ -4,8 +4,12 @@ const Listing =require('./models/listing.js');
 const path = require('path');
 const methodOverride = require('method-override');
 const app=express();
-
+const ejsmate = require('ejs-mate');
 app.use(methodOverride("_method"));
+
+// use ejs-locals for all ejs templates:
+app.engine('ejs', ejsmate);
+app.use(express.static(path.join(__dirname,"/public")));
 
 main()
 .then((res)=>{
