@@ -7,12 +7,14 @@
             <div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2">
                 <h3 class="mt-2 mb-2">Edit Your Listing</h3>
 
-                <form method="post" action="/listings/<%=listingData.id%>?_method=PUT">
+                <form method="post" action="/listings/<%=listingData.id%>?_method=PUT" novalidate class="needs-validation">
 
 
                     <div class="mb-4">
                         <label for="title" class="form-label">Title</label>
-                        <input type="text" name="listing[title]" value="<%=listingData.title%>" class="form-control">
+                        <input type="text" name="listing[title]" value="<%=listingData.title%>" class="form-control" required>
+                        <div class="invalid-feedback">Please provide a title.</div>
+                        <div class="valid-feedback">Looks good!</div>
 
                     </div>
 
@@ -21,7 +23,10 @@
                     <div class="mb-4">
                         <label for="description" class="form-label">Description</label>
                         <textarea type="text" name="listing[description]"
-                            class="form-control"><%=listingData.description %></textarea>
+                            class="form-control" required ><%=listingData.description %></textarea>
+
+                            <div class="invalid-feedback">Please provide a Description.</div>
+                        <div class="valid-feedback">Looks good!</div>
 
                     </div>
 
@@ -29,7 +34,10 @@
                     <div class="mb-4">
                         <label for="imagelink" class="form-label">URL of Image </label>
                         <input type="text" name="listing[image][url]" value="<%=listingData.image.url%>"
-                            class="form-control">
+                            class="form-control" required>
+
+                            <div class="invalid-feedback">Please provide a Image.</div>
+                        <div class="valid-feedback">Looks good!</div>
 
                     </div>
 
@@ -38,13 +46,19 @@
                         <div class="mb-4 col-4">
                             <label for="country" class="form-label">Country </label>
                             <input type="text" name="listing[country]" value="<%=listingData.country%>"
-                                class="form-control">
+                                class="form-control" required>
+
+                                <div class="invalid-feedback">Country Name should be valid.</div>
+                        <div class="valid-feedback">Looks good!</div>
 
                         </div>
                         <div class="mb-4 col-8">
                             <label for="Location" class="form-label">Location</label>
                             <input type="text" name="listing[location]" value="<%=listingData.location%>"
-                                class="form-control">
+                                class="form-control" required>
+
+                                <div class="invalid-feedback">Valid Location Required.</div>
+                        <div class="valid-feedback">Looks good!</div>
 
                         </div>
 
@@ -63,7 +77,9 @@
 
                     <div class="mb-4">
                         <label for="price" class="form-label">Price</label>
-                        <input type="number" name="listing[price]" value="<%=listingData.price%>" class="form-control">
+                        <input type="number" name="listing[price]" value="<%=listingData.price%>" class="form-control" required>
+                        <div class="invalid-feedback">Please provide a Valid Price.</div>
+                        <div class="valid-feedback">Looks good!</div>
 
                     </div>
 

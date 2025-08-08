@@ -3,6 +3,9 @@ body{
     flex-direction: column;
     min-height: 100vh;
 }
+.container {
+    flex-grow: 1;
+}
 .navbar{
       background-color:white
 }
@@ -13,7 +16,7 @@ body{
 }
 
 .nav-link{
-    color: black;!important
+    color: black!important;
 }
 
 
@@ -57,25 +60,25 @@ body{
     align-items: space-evenly;
 }
 
-.card{
-    border: none;!important
+.listingcard{
+    border: none!important;
     margin-right: 3rem;
       
 }
 
 .card-img-top{
     border-radius: 1rem;
-    width: 100%;!important
-    object-fit: cover;!important
+    /* width: 90%!important; */
+    object-fit: cover!important;
 }
 .row{
-    padding: 0;!important
-    margin: 0;!important
+    padding: 0!important;
+    margin: 0!important;
 }
 
 .cardd:hover {
-          box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.4); !important /* bold & deep */
-        transition: box-shadow 0.3s ease;!important
+          box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.4) !important; /* bold & deep */
+        transition: box-shadow 0.3s ease!important;
     }
 
 

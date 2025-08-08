@@ -2,82 +2,73 @@
 
     <body>
 
-        
+
         <div class="row">
 
             <div class="div  col-8 offset-1 col-lg-6 offset-lg-3">
 
                 <h3 class="mt-2">Create New Listing</h3>
 
-                <form method="post" action="/listings" class="newform">
-                <div class="mb-4">
-                    <label for="title" class="form-label">Title</label>
-                    <input type="text" name="listing[title]" placeholder="Enter title of Property "
-                        class="form-control">
+                <form method="post" action="/listings" class="newform needs-validation" novalidate>
 
-                </div>
+                    <div class="mb-4">
+                        <label for="title" class="form-label">Title</label>
+                        <input type="text" id="title" name="listing[title]" class="form-control"
+                            placeholder="Enter title of Property" required>
+                        <div class="invalid-feedback">Please provide a title.</div>
+                        <div class="valid-feedback">Looks good!</div>
+                    </div>
 
+                    <div class="mb-4">
+                        <label for="description" class="form-label">Description</label>
+                        <textarea id="description" name="listing[description]" class="form-control"
+                            placeholder="Enter description of Property" required></textarea>
+                        <div class="invalid-feedback">Please provide a description.</div>
+                        <div class="valid-feedback">Looks good!</div>
+                    </div>
 
-                <div class="mb-4">
-                    <label for="description" class="form-label">Description</label>
-                    <textarea type="text" name="listing[description]" placeholder="Enter description of Property "
-                        class="form-control"></textarea>
+                    <div class="mb-4">
+                        <label for="imagelink" class="form-label">URL Of image</label>
+                        <input type="text" id="imagelink" name="listing[image][url]" class="form-control"
+                            placeholder="Enter URL of image">
+                        <div class="invalid-feedback">Please provide a valid image URL.</div>
+                        <div class="valid-feedback">Looks good!</div>
+                    </div>
 
-                </div>
+                    <div class="row">
+                        <div class="mb-4 col-lg-4">
+                            <label for="country" class="form-label">Country</label>
+                            <input type="text" id="country" name="listing[country]" class="form-control"
+                                placeholder="Enter country of Property" required>
+                            <div class="invalid-feedback">Please enter a country.</div>
+                            <div class="valid-feedback">Looks good!</div>
+                        </div>
 
-                <div class="mb-4">
-                    <label for="imagelink" class="form-label">URL Of image</label>
-                    <input type="text" name="listing[image][url]" placeholder="Enter Url of image "
-                        class="form-control">
+                        <div class="mb-4 col-lg-8">
+                            <label for="location" class="form-label">Location</label>
+                            <input type="text" id="location" name="listing[location]" class="form-control"
+                                placeholder="Enter location of Property" required>
+                            <div class="invalid-feedback">Please enter a location.</div>
+                            <div class="valid-feedback">Looks good!</div>
+                        </div>
+                    </div>
 
-                </div>
+                    <div class="mb-4 col-lg-6">
+                        <label for="price" class="form-label">Price</label>
+                        <input type="text" id="price" name="listing[price]" class="form-control"
+                            placeholder="Enter price of Property" required>
+                        <div class="invalid-feedback">Please enter a price.</div>
+                        <div class="valid-feedback">Looks good!</div>
+                    </div>
 
-                <div class="row">
-
-                    
-                <div class="mb-4 col-lg-4 ">
-                    <label for="country" class="form-label">Country</label>
-                    <input type="text" name="listing[country]" placeholder="Enter country of Property"
-                        class="form-control">
-
-
-                </div>
-
-                 <div class="mb-4 col-lg-8">
-                    <label for="Location" class="form-label">Location</label>
-                    <input type="text" name="listing[location]" placeholder="Enter location of Property "
-                        class="form-control">
-
-
-                </div>
-
-
-                    
-                </div>
-                
-
-               
-
-                <div class="mb-4 col-lg-6">
-                    <label for="price" class="form-label">Price</label>
-                    <input type="number" name="listing[price]" placeholder="Enter Price of Property  "
-                        class="form-control">
-
-
-                </div>
-<button class="btn btn-primary addBtn" type="submit">ADD</button>
-<br>
-<br>
-            </form>
-
-                
+                    <button class="btn btn-primary addBtn" type="submit">ADD</button>
+                </form>
 
             </div>
-            
+
 
 
         </div>
-
 
 
     </body>
