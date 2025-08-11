@@ -6,6 +6,10 @@ const app = express();
 const ejsmate = require('ejs-mate');
 const listing = require("./routes/listings.js")
 const reviews = require("./routes/reviews.js");
+const session=require("express-session");
+const flash=require("connect-flash");
+
+
 
 app.use(methodOverride("_method"));
 
@@ -26,16 +30,38 @@ async function main() {
 
 }
 
+const sessionOption={
+    secret:"myxyz//nthop.//",
+    resave:false,
+ saveUninitialized: true,    
+    cookies:{
+        expires: Date.now()+7*24*60*60*1000,
+        maxAge: 7*24*60*60*1000
+    }
+}
+
+app.use(session(sessionOption));
+app.use(flash());
+
 
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+
+
+
 app.get("/", (req, res) => {
 
     res.send("App is working fine at root ")
 
+})
+
+app.use((req,res,next)=>{
+    res.locals.success=req.flash("success");
+    res.locals.error=req.flash("error");
+    next();
 })
 
 //listing routes 
