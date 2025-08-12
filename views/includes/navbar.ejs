@@ -1,22 +1,43 @@
-
-
-
-
-
 <nav class="navbar navbar-expand-md bg-body-tertiary sticky-top">
-  
+
   <div class="container-fluid">
     <a class="navbar-brand ms-4" href="#"> <i class="fa-regular 3 fa-compass"></i></a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+      aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+
       <div class="navbar-nav mx-auto">
         <a class="nav-link mx-2" aria-current="page" href="/">Home</a>
         <a class="nav-link mx-2" href="/listings">All Listings</a>
         <a class="nav-link mx-2" href="/listings/new">New Listing</a>
         <a class="nav-link disabled mx-2" aria-disabled="true">Disabled</a>
       </div>
+
+      <div class="navbar-nav mx-auto me-3">
+        <% if(!currUser) { %>
+          <a href="/login"> <button class="btn btn-danger me-2" onclick="/login/">Login</button>
+          </a>
+          <a href="/signup">
+            <button class="btn btn-outline-danger me-4 ">Signup</button>
+
+          </a>
+
+          <% }%>
+
+            <% if(currUser) { %>
+              <a href="/logout">
+                <button class="btn btn-danger me-4 ">Logout</button>
+
+              </a>
+
+
+              <% }%>
+
+
+      </div>
+
     </div>
   </div>
 </nav>

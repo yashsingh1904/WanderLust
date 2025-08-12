@@ -8,6 +8,7 @@ const wrapAsync = require("../utils/wrapAsync.js")
 
 const { reviewSchema } = require('../Schema.js');
 const Review = require("../models/reveiw.js")
+const { isLoggedin } = require('../middlewares.js');
 
 
 
@@ -33,7 +34,7 @@ const validateReview = (req, res, next) => {
 }
 
 
-router.post("", validateReview, async (req, res) => {
+router.post("", isLoggedin, validateReview, async (req, res) => {
     let { id } = req.params;
 
     const listingData = await Listing.findById(id);
@@ -42,7 +43,7 @@ router.post("", validateReview, async (req, res) => {
     await newreview.save();
     await listingData.save();
     // console.log(newreview);
-         req.flash("success"," Review Creataed !");
+    req.flash("success", " Review Creataed !");
 
     res.redirect(`/listings/${id}`);
 
@@ -53,14 +54,14 @@ router.post("", validateReview, async (req, res) => {
 
 //Review Delete Route 
 
-router.delete("/:reviewID", wrapAsync(async (req, res) => {
+router.delete("/:reviewID", isLoggedin, wrapAsync(async (req, res) => {
 
     const { id, reviewID } = req.params;
 
 
     await Listing.findByIdAndUpdate(id, { $pull: { reviews: reviewID } })
     await Review.findByIdAndDelete(reviewID);
-         req.flash("success","Review Delted ");
+    req.flash("success", "Review Delted ");
 
     res.redirect(`/listings/${id}`);
 }))

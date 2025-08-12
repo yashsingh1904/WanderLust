@@ -6,8 +6,14 @@ const app = express();
 const ejsmate = require('ejs-mate');
 const listing = require("./routes/listings.js")
 const reviews = require("./routes/reviews.js");
-const session=require("express-session");
-const flash=require("connect-flash");
+const userRoute = require("./routes/user.js");
+const session = require("express-session");
+const flash = require("connect-flash");
+
+const passport = require("passport");
+const LocalStartegy = require("passport-local");
+const User = require("./models/user.js");
+const wrapAsync = require('./utils/wrapAsync.js');
 
 
 
@@ -30,19 +36,26 @@ async function main() {
 
 }
 
-const sessionOption={
-    secret:"myxyz//nthop.//",
-    resave:false,
- saveUninitialized: true,    
-    cookies:{
-        expires: Date.now()+7*24*60*60*1000,
-        maxAge: 7*24*60*60*1000
+const sessionOption = {
+    secret: "myxyz//nthop.//",
+    resave: false,
+    saveUninitialized: true,
+    cookies: {
+        expires: Date.now() + 7 * 24 * 60 * 60 * 1000,
+        maxAge: 7 * 24 * 60 * 60 * 1000
     }
 }
 
 app.use(session(sessionOption));
 app.use(flash());
 
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStartegy(User.authenticate()));
+
+passport.serializeUser(User.serializeUser());
+
+passport.deserializeUser(User.deserializeUser());
 
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
@@ -58,11 +71,24 @@ app.get("/", (req, res) => {
 
 })
 
-app.use((req,res,next)=>{
-    res.locals.success=req.flash("success");
-    res.locals.error=req.flash("error");
+app.use((req, res, next) => {
+    res.locals.success = req.flash("success");
+    res.locals.error = req.flash("error");
+    res.locals.currUser=req.user;
     next();
 })
+
+app.get("/demouser", async (req, res) => {
+    let fakeUser = {
+        email: "xyz@gmail.com",
+        username: "xyz123"
+    }
+    const registeredstudent = await User.register(fakeUser, "mypassword");
+    res.send(registeredstudent);
+})
+
+
+app.use("/",userRoute);
 
 //listing routes 
 app.use("/listings", listing);
