@@ -12,7 +12,6 @@
         <a class="nav-link mx-2" aria-current="page" href="/">Home</a>
         <a class="nav-link mx-2" href="/listings">All Listings</a>
         <a class="nav-link mx-2" href="/listings/new">New Listing</a>
-        <a class="nav-link disabled mx-2" aria-disabled="true">Disabled</a>
       </div>
 
       <div class="navbar-nav mx-auto me-3">
@@ -27,6 +26,10 @@
           <% }%>
 
             <% if(currUser) { %>
+              <a class="nav-link disabled mx-2">
+                <%=currUser.username %>
+              </a>
+
               <a href="/logout">
                 <button class="btn btn-danger me-4 ">Logout</button>
 

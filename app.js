@@ -78,16 +78,9 @@ app.use((req, res, next) => {
     next();
 })
 
-app.get("/demouser", async (req, res) => {
-    let fakeUser = {
-        email: "xyz@gmail.com",
-        username: "xyz123"
-    }
-    const registeredstudent = await User.register(fakeUser, "mypassword");
-    res.send(registeredstudent);
-})
 
 
+//user route
 app.use("/",userRoute);
 
 //listing routes 

@@ -4,6 +4,7 @@ const passport = require("passport");
 const LocalStartegy = require("passport-local");
 const User = require("../models/user.js");
 const wrapAsync = require('../utils/wrapAsync.js');
+const { saveRedirectURL } = require('../middlewares.js');
 //user route 
 
 router.get("/signup", (req, res) => {
@@ -46,10 +47,12 @@ router.get("/login", (req, res) => {
 
 })
 
-router.post("/login", passport.authenticate("local", { failureRedirect: "/login", failureFlash: true }), async (req, res) => {
+router.post("/login",saveRedirectURL,passport.authenticate("local", { failureRedirect: "/login", failureFlash: true }), async (req, res) => {
     let { username } = req.body;
     req.flash("success", `Welcome Back ${username}`);
-    res.redirect("/listings");
+    
+    
+    res.redirect(res.locals.redirectURL);
 
 
 })
