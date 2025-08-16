@@ -49,8 +49,13 @@ module.exports.postLogin=async(req, res) => {
     let { username } = req.body;
     req.flash("success", `Welcome Back ${username}`);
     
-    
-    res.redirect(res.locals.redirectURL);
+    if(res.locals.redirectURL){
+            res.redirect(res.locals.redirectURL);
+
+    }
+    else{
+        res.redirect("/listings");
+    }
 
 
 }

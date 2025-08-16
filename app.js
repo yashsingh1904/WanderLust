@@ -87,7 +87,7 @@ app.use(express.json());
 
 app.get("/", (req, res) => {
 
-    res.send("App is working fine at root ")
+    res.redirect("/listings");
 
 })
 
