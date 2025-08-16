@@ -1,20 +1,28 @@
 <nav class="navbar navbar-expand-md bg-body-tertiary sticky-top">
 
   <div class="container-fluid">
-    <a class="navbar-brand ms-4" href="#"> <i class="fa-regular 3 fa-compass"></i></a>
+    <a class="navbar-brand mx-auto ms-5 " href="/listings"><i class="fa-solid icon-logo fa-mountain-city "></i></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
       aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 
-      <div class="navbar-nav mx-auto">
-        <a class="nav-link mx-2" aria-current="page" href="/">Home</a>
-        <a class="nav-link mx-2" href="/listings">All Listings</a>
-        <a class="nav-link mx-2" href="/listings/new">New Listing</a>
+      <div class="navbar-nav ms-3">
+        <a class="nav-link ms-5" href="/listings"><b>Explore</b></a>
+
       </div>
+      <div class="mx-auto px-3">
+        <form class="d-flex" role="search">
+        <input class="form-control  me-2 search-field" type="search" placeholder="Search Your Destination " aria-label="Search" />
+        <button class="btn btn-danger search-btn" type="submit">Search</button>
+      </form>
+      </div>
+      
 
       <div class="navbar-nav mx-auto me-3">
+        <a class="nav-link me-4" href="/listings/new"><b>Rent Your Property</b></a>
+
         <% if(!currUser) { %>
           <a href="/login"> <button class="btn btn-danger me-2" onclick="/login/">Login</button>
           </a>
@@ -26,9 +34,7 @@
           <% }%>
 
             <% if(currUser) { %>
-              <a class="nav-link disabled mx-2">
-                <%=currUser.username %>
-              </a>
+
 
               <a href="/logout">
                 <button class="btn btn-danger me-4 ">Logout</button>
