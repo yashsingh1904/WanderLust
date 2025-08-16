@@ -1,3 +1,6 @@
+require('dotenv').config()
+console.log(process.env.ATLAS_URL); 
+
 const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
@@ -8,6 +11,7 @@ const listing = require("./routes/listings.js")
 const reviews = require("./routes/reviews.js");
 const userRoute = require("./routes/user.js");
 const session = require("express-session");
+const MongoStore = require('connect-mongo');
 const flash = require("connect-flash");
 
 const passport = require("passport");
@@ -15,6 +19,7 @@ const LocalStartegy = require("passport-local");
 const User = require("./models/user.js");
 const wrapAsync = require('./utils/wrapAsync.js');
 
+let db_URL=(process.env.ATLAS_URL)
 
 
 app.use(methodOverride("_method"));
@@ -24,19 +29,34 @@ app.use(methodOverride("_method"));
 app.engine('ejs', ejsmate);
 
 app.use(express.static(path.join(__dirname, "/public")));
-
 main()
     .then((res) => {
         console.log("DB Connected SUccesfully");
     })
     .catch(err => console.log(err));
+    
+
 
 async function main() {
-    await mongoose.connect('mongodb://127.0.0.1:27017/wanderlust');
+    await mongoose.connect(db_URL);
 
 }
 
+const store=MongoStore.create({
+    mongoUrl:db_URL,
+    crypto:{
+        secret:"myxyz//nthop.//"
+    },
+    touchAfter:24*3600
+});
+
+store.on("error",(error)=>{
+    console.log("Error in Session Store",error);
+
+})
+
 const sessionOption = {
+    store,
     secret: "myxyz//nthop.//",
     resave: false,
     saveUninitialized: true,
